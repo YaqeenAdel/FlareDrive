@@ -3,18 +3,26 @@
   "version": "0.0.1",
   "description": "CloudFlare R2 storage manager with Pages and Workers.",
   "scripts": {
-    "dev": "wrangler pages dev . --r2 BUCKET"
+    "dev": "vite",
+    "build": "run-p type-check \"build-only {@}\" --",
+    "preview": "vite preview",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "format": "prettier --write src/",
+    "pages:dev": "wrangler pages dev --compatibility-date=2023-10-18 --proxy 5173 -- npm run dev --r2 yaqeen",
+    "pages:deploy": "npm run build && wrangler pages deploy ./dist"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/longern/FlareDrive.git"
+    "url": "git+https://github.com/yaqeen/FlareDrive.git"
   },
-  "author": "longern",
+  "author": "yaqeen",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/longern/FlareDrive/issues"
+    "url": "https://github.com/yaqeen/FlareDrive/issues"
   },
-  "homepage": "https://github.com/longern/FlareDrive#readme",
+  "homepage": "https://github.com/yaqeen/FlareDrive#readme",
   "devDependencies": {
     "@cloudflare/workers-types": "^3.3.1",
     "wrangler": "^2.6.2"
